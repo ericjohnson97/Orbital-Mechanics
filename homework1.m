@@ -31,7 +31,7 @@ Tijk2RST = [R;S;W];
 
 r21rsw = Tijk2RST*r21ijk';
 
-fprintf("Sat 1 is %g R %g S %g W [DU] away from sat 2 in Sat 1's RSW frame/n", r21rsw);
+fprintf("Sat 1 is %g R %g S %g W [DU] away from sat 2 in Sat 1's RSW frame \n", r21rsw);
 
 
 
