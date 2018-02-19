@@ -149,7 +149,8 @@ hold on
 plot(t,vkErr);
 
 %problem 7
-
+fprintf('\nProblem 7.) \n');
+fprintf('The error is cyclic matching the acceleration of the space craft.\nWhen the spacecraft has a higher velocity the error increases due to the higher deltas per time span.')
 
 
 
