@@ -4,13 +4,23 @@ clc; clear all;
 
 
 %Problem 2
-% 
-% UTC = [14, 58, 9];
-% dUT1 = 0.184798;
-% UT1 = UTC;
-% UT1(3) = UT1(3) + dUT1
-% TUT1 = UT1(1)*60*60 + UT1(2)*60 + UT1(3);
-% 
+dUT1 = .184798; %sec
+%convert dayte and time to Julian day
+year = 2018;
+month = 2;
+day = 9;
+hour = 15;
+min = 0;
+sec = 0;
+JDutc = 367*year - round((7*(year + round((month+9)/12)))/4) + round((275*month)/9) + day + 1721013.5 + (1/24)*(hour + (1/60)*(min + sec/60))
+MJDutc = JDutc - 2400000.5
+MJDut1 = MJDutc + (dUT1/86400)
+
+
+Tut1 = (MJDut1 - 51544.5)/36525 %julian centuries
+
+thetaGMST = 67310.54841 + (876600*(3600/1) + 640184.812866 )*Tut1 + 0.093104*Tut1^2 - (6.2*10^-6)*Tut1^3
+thetaGMST = (thetaGMST/86400) - round(thetaGMST/86400)
 
 %Problem 3
 clear all;
@@ -72,11 +82,37 @@ dv = norm((vt2 - vt1atT2) ./ vt2)*100;
 fprintf('No because there is a %f percent error in position \n', dr);
 fprintf('and a %f percent error in velocity \n', dv);
 
+clear all;
 %problem 5
 
+xp = .00575134; %''
+yp = .30394248; %''
+dUT1 = .184798; %sec
+dX = 0; %''
+dY = 0; %''
+X = 358.4586; %''
+Y = -7.138811; %''
+s = .004737961; %''
 
+thetaERA = 
 
+%TT
+sp = -.000047 %''
 
+R3s = R3(-sp*(1/3600));
+R2xp = R2(xp*(1/3600));
+R1yp = R1(yp*(1/3600));
+W = R3s*R2xp*R1yp
+
+function TR3 = R3(theta)
+TR3 = [cosd(theta), -sind(theta), 0; sind(theta), cosd(theta), 0; 0, 0, 1];
+end
+function TR2 = R2(theta)
+TR2 = [cosd(theta), 0, sind(theta); 0, 1, 0; -sind(theta), 0, cosd(theta)];
+end
+function TR1 = R1(theta)
+TR1 = [1, 0, 0; 0, cosd(theta), -sind(theta); 0, sind(theta), cosd(theta)];
+end
 
 
 
