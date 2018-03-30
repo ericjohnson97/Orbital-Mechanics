@@ -1,6 +1,28 @@
 %Eric Johnson
 %Homework 6 ASE 366L
 clc; clear all; close all;
+
+Re =  6378.1363;
+mue = 398600.4415;
+J2 = 0.0010826267;
+J3 = -0.0000025327;
+J4 = -0.0000016196;
+%Problem 2
+%orbit charateristics
+a = 7303.14;
+e = .003;
+i = 98;
+OMEGAsec2 = -(3/2)*((sqrt(mue)*(Re^2)*J2)/((a^(7/2))*(1-e^2)))*cosd(i);
+n = sqrt(mue/(a^3));
+p = a*(1 - e^2);
+OMEGAsec4 = (15*J4*n*cosd(i))/(32*p^4)*(8+12*e^12 - (14 +21*e^2)*sind(i)^2); 
+fprintf('Problem 2 \n');
+fprintf('A.)OMEGA dot due to J2 is %e [rad/s]\n', OMEGAsec2);
+fprintf('B.)OMEGA dot due to J4 is %e [rad/s]\n', OMEGAsec4);
+percentDiff = OMEGAsec4/OMEGAsec2*100;
+fprintf('C.)the percent difference between OMEGA dot J2 and J3 is %e \n', percentDiff);
+fprintf('The perturbation due to J4 relative to J2 is essentially negligable\n');
+clear all;
 %constants
 Re = 6378.1363;
 mu = 398600.4415;
